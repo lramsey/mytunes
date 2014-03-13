@@ -4,15 +4,16 @@
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
-    <script src="bower_components/backbone.localStorage/backbone.localStorage-min.js"></script>
-    <script src="bower_components/requirejs/require.js"></script>
+  <!--  <script src="bower_components/backbone.localStorage/backbone.localStorage-min.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>  -->
 
     <script src="data/data.js"></script>
     <script src="models/SongModel.js"></script>
@@ -30,19 +31,24 @@
 
   </head>
   <body>
-    <div class="top-wrapper">
-      <h1 class="centered">LJ Play</h1>
-      <div class="centered player">
+    <div class="bg-wrap">
+      <div class="top-wrapper">
+        <div class="centered"><i class="fa fa-youtube-play fa-4x" style="color:white"></i></div>
+        <div class="centered header">AMPED</div>
+        <div class="centered player">
+        </div>
       </div>
-    </div>
-    <div class="body-wrapper">
-      <div class="col-md-2">
-      </div>
-      <div class="col-md-4 playlist">
-      </div>
-      <div class="col-md-4 library">
-      </div>
-      <div class="col-md-2">
+      <div class="body-wrapper">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5 playlist">
+          <div class="playlist-header centered"><i class="fa fa-gittip"></i> Playlist</div>
+        </div>
+        <div class="col-md-5 library">
+          <div class="library-header centered"><i class="fa fa-list"></i> Library</div>
+        </div>
+        <div class="col-md-1">
+        </div>
       </div>
     </div>
     <script>

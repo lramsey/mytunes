@@ -15,7 +15,7 @@ body {
 
 .header {
   font-family: 'Oswald', serif;
-  font-size: 20px;
+  font-size: 30px;
   color: white;
   font-weight: 700;
   text-transform: uppercase;
@@ -40,14 +40,14 @@ body {
 }
 
 .playlist {
-  background-color: rgba(255,252,232,0.95);
+  background-color: rgba(255,252,232,0.80);
   height: 500px;
   padding-top: 20px;
   padding-left: 20px;
 }
 
 .library {
-  background-color: rgba(255,252,232,0.95);
+  background-color: rgba(255,252,232,0.80);
   padding-top: 20px;
   margin-left: 20px;
   height: 500px;

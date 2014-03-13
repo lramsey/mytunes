@@ -20,4 +20,5 @@ var SongQueueView = Backbone.View.extend({
     this.$el.find('tr').first().detach();
   }
 
+
 });

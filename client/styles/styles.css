@@ -5,6 +5,12 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  color: blue;
+}
+
+h1 {
+  font-family: 'Abril Fatface', serif;
+  color: black;
 }
 
 .centered {

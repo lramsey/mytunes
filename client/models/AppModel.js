@@ -3,6 +3,8 @@ var AppModel = Backbone.Model.extend({
 
   initialize: function(params){
     this.set('currentSong', new SongModel());
+    //var songQueue = new SongQueue();
+    //songQueue.fetch();
     this.set('songQueue', new SongQueue());
 
     /* Note that 'this' is passed as the third argument. That third argument is
@@ -13,22 +15,17 @@ var AppModel = Backbone.Model.extend({
     getting called from the window (unless we override it, as we do here). */
     params.library.on('play', function(song){
       this.set('currentSong', song);
-
-      //TODO: fix this
-      if (this.get('currentSong') === song){
-        this.trigger('changeCurrentSong');
-      }
+      this.trigger('changeCurrentSong');
     }, this);
 
     params.library.on('enqueue', function(song){
       var sq = this.get('songQueue');
-
+      var songClone = _.clone(song);
       if (sq.models.length === 0){
-        song.play();
+        songClone.play();
       }
-
-      sq.models.push(song);
-
+      sq.models.push(songClone);
+      //songClone.save();
       this.trigger('songAdded');
     }, this);
 

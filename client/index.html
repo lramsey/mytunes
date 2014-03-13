@@ -4,15 +4,17 @@
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
     <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Abril+Fatface' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/styles.css">
 
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
+    <script src="bower_components/backbone.localStorage/backbone.localStorage-min.js"></script>
+    <script src="bower_components/requirejs/require.js"></script>
 
     <script src="data/data.js"></script>
-
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
     <script src="collections/SongQueue.js"></script>
@@ -24,6 +26,7 @@
     <script src="views/SongQueueView.js"></script>
     <script src="views/SongQueueEntryView.js"></script>
     <script src="views/AppView.js"></script>
+    <script src="router/AppRouter.js"></script>
 
   </head>
   <body>
@@ -53,6 +56,19 @@
 
         // put the view onto the screen
         $('body').append(appView.render());
+
+        // Initiate the router
+        var app_router = window.router;
+        app_router = new AppRouter;
+        app_router.on('route:song', function(title) {
+          songTitle = title.replace(/-/g, ' ');
+          var thisSong = library.find(function(song){
+            return song.get('title') === songTitle;
+          });
+          thisSong.enqueue();
+        });
+
+        Backbone.history.start();
       });
     </script>
   </body>

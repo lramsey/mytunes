@@ -35,11 +35,7 @@ var AppView = Backbone.View.extend({
     $('.player').append(this.playerView.$el);
     $('.playlist').append(this.songQueueView.$el);
     $('.library').append(this.libraryView.$el);
-    return this.$el.html([
-      // this.playerView.$el,
-      // this.songQueueView.$el,
-      // this.libraryView.$el
-    ]);
+    return this.$el.html();
   }
 
 });

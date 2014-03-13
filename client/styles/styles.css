@@ -1,0 +1,40 @@
+body {
+  font-family: 'Josefin Slab', serif;
+  background: url(../images/bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.centered {
+  text-align: center;
+}
+
+.top-wrapper {
+  padding-top: 20px;
+  padding-bottom: 50px;
+  border-bottom: 1px solid rgb(235,235,235);
+  background-color: rgba(255,255,255,0.6);
+}
+
+.body-wrapper {
+  background-color: rgba(200,200,200,0.6);
+  height: 700px;
+}
+
+.playlist {
+  padding-top: 30px;
+  padding-left: 20px;
+}
+
+.library {
+  padding-top: 30px;
+  padding-left: 20px;
+  height: inherit;
+  border-left: 1px solid rgb(235,235,235);
+}
+
+td {
+  padding-right: 8px;
+}

@@ -6,14 +6,18 @@ var AppView = Backbone.View.extend({
     this.libraryView = new LibraryView({collection: this.model.get('library')});
     this.songQueueView = new SongQueueView({collection: this.model.get('songQueue')});
 
-    this.model.on('change:currentSong', function(model){
-      this.playerView.setSong(model.get('currentSong'));
+    this.model.on('changeCurrentSong', function(){
+      this.playerView.setSong(this.model.get('currentSong'));
     }, this);
 
-    this.model.on('change:songQueue', function(model){
-      var sq = model.get('songQueue');
+    this.model.on('songAdded', function(){
+      var sq = this.model.get('songQueue');
       var song = sq.models[sq.models.length-1];
       this.songQueueView.addSong(song);
+    }, this);
+
+    this.model.on('stop', function(){
+      this.playerView.stopPlay();
     }, this);
 
     this.playerView.on('nextSong', function(model){
@@ -24,13 +28,17 @@ var AppView = Backbone.View.extend({
       }
       this.songQueueView.removeSongQueueEntry();
     }, this);
+
   },
 
   render: function(){
+    $('.player').append(this.playerView.$el);
+    $('.playlist').append(this.songQueueView.$el);
+    $('.library').append(this.libraryView.$el);
     return this.$el.html([
-      this.playerView.$el,
-      this.songQueueView.$el,
-      this.libraryView.$el
+      // this.playerView.$el,
+      // this.songQueueView.$el,
+      // this.libraryView.$el
     ]);
   }
 

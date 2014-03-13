@@ -13,21 +13,41 @@ var AppModel = Backbone.Model.extend({
     getting called from the window (unless we override it, as we do here). */
     params.library.on('play', function(song){
       this.set('currentSong', song);
+
+      //TODO: fix this
+      if (this.get('currentSong') === song){
+        this.trigger('changeCurrentSong');
+      }
     }, this);
 
     params.library.on('enqueue', function(song){
-      var sq = _.clone( this.get('songQueue') );
+      var sq = this.get('songQueue');
 
-      var modelClone = sq.models.slice(0);
-
-      if (modelClone.length === 0){
+      if (sq.models.length === 0){
         song.play();
       }
 
-      modelClone.push(song);
-      sq.models = modelClone;
+      sq.models.push(song);
 
-      this.set('songQueue', sq);
+      this.trigger('songAdded');
+    }, this);
+
+    params.library.on('dequeue', function(song){
+      var sq = this.get('songQueue');
+
+      _.each(sq.models, function(songElement, index){
+        if (songElement === song){
+          sq.models.splice(index, 1);
+          // if currently playing song is clicked
+          if(index === 0){
+            this.trigger('stop');
+            if(sq.models.length > 0){
+              sq.models[0].play();
+            }
+          }
+        }
+      }, this);
+
     }, this);
   }
 });

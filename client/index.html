@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
-  <body>
+  <head>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
@@ -21,6 +24,15 @@
     <script src="views/SongQueueEntryView.js"></script>
     <script src="views/AppView.js"></script>
 
+  </head>
+  <body>
+    <h1>LJ Play</h1>
+    <div class="player">
+    </div>
+    <div class="col-md-6 playlist">
+    </div>
+    <div class="col-md-6 library">
+    </div>
     <script>
       $(function(){
         // set up model objects

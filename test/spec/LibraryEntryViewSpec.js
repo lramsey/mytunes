@@ -14,7 +14,7 @@ describe('LibraryEntryView', function() {
   });
 
   after(function() {
-    SongModel.prototype.enqueue.restore();
+    // SongModel.prototype.enqueue.restore();
   });
 
   it('plays clicked songs', function(){

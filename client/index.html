@@ -12,8 +12,6 @@
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
-  <!--  <script src="bower_components/backbone.localStorage/backbone.localStorage-min.js"></script>
-    <script src="bower_components/requirejs/require.js"></script>  -->
 
     <script src="data/data.js"></script>
     <script src="models/SongModel.js"></script>
@@ -56,6 +54,7 @@
         // set up model objects
         var library = new Songs(songData);
         var app = new AppModel({library: library});
+        console.log(library);
 
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});

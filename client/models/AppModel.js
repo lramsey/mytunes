@@ -3,9 +3,25 @@ var AppModel = Backbone.Model.extend({
 
   initialize: function(params){
     this.set('currentSong', new SongModel());
-    //var songQueue = new SongQueue();
-    //songQueue.fetch();
+
+    var data = JSON.parse(window.localStorage.getItem('playlist'));
+    var obj = {};
+    _.each(params.library.models, function(song, index){
+      obj[song.attributes.url] = index;
+    });
+
+    libModels =_.map(data, function(songData){
+      var index = obj[songData.url];
+      var song = params.library.at(index);
+      return song;
+    });
     this.set('songQueue', new SongQueue());
+    this.get('songQueue').models = libModels;
+    if(this.get('songQueue').models.length > 0){
+      var song = this.get('songQueue').at(0);
+      this.set('currentSong', song);
+      this.trigger('changeCurrentSong');
+    }
 
     /* Note that 'this' is passed as the third argument. That third argument is
     the context. The 'play' handler will always be bound to that context we pass in.
@@ -19,13 +35,14 @@ var AppModel = Backbone.Model.extend({
     }, this);
 
     params.library.on('enqueue', function(song){
+      console.log('enqueue caught');
       var sq = this.get('songQueue');
       var songClone = _.clone(song);
       if (sq.models.length === 0){
         songClone.play();
       }
       sq.models.push(songClone);
-      //songClone.save();
+      sq.save();
       this.trigger('songAdded');
     }, this);
 
@@ -44,6 +61,9 @@ var AppModel = Backbone.Model.extend({
           }
         }
       }, this);
+
+      this.get('songQueue').save();
+      console.log(sq);
 
     }, this);
   }

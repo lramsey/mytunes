@@ -9,26 +9,6 @@ var AppView = Backbone.View.extend({
     this.model.on('changeCurrentSong', function(){
       this.playerView.setSong(this.model.get('currentSong'));
     }, this);
-
-    this.model.on('songAdded', function(){
-      var sq = this.model.get('songQueue');
-      var song = sq.models[sq.models.length-1];
-      this.songQueueView.addSong(song);
-    }, this);
-
-    this.model.on('stop', function(){
-      this.playerView.stopPlay();
-    }, this);
-
-    this.playerView.on('nextSong', function(model){
-      var sq = this.model.get('songQueue');
-      sq.models.shift();
-      if(sq.models.length > 0){
-        sq.models[0].play();
-      }
-      this.songQueueView.removeSongQueueEntry();
-    }, this);
-
   },
 
   render: function(){

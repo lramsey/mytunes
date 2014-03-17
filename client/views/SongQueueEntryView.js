@@ -1,19 +1,19 @@
 // SongQueueEntryView.js - Defines a backbone view class for the song queue entries.
 var SongQueueEntryView = Backbone.View.extend({
-  // your code here!
-  initialize: function(song){
-    _.bindAll(this, play, render);
-    this.song = song;
-    this.render();
-  },
 
-  play: function(){
-    //if song is last in collection, next in line as it were
-    if(this.songQueue[0] === this.song){
-      this.setSong(this.song);
+  tagName: 'tr',
+
+  template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
+
+  events: {
+    'click': function() {
+      this.model.dequeue();
+      this.$el.detach();
     }
   },
-  render: function(){
 
+  render: function(){
+    console.log(this.model);
+    return this.$el.html(this.template(this.model.attributes));
   }
 });

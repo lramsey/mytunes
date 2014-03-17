@@ -1,0 +1,90 @@
+body {
+  font-family: 'Josefin Slab', serif;
+  background: url(../images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: black;
+
+}
+
+.bg-wrap {
+  background-color: rgba(204, 59, 55, 0.95);
+}
+
+.header {
+  font-family: 'Oswald', serif;
+  font-size: 30px;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.centered {
+  text-align: center;
+}
+
+.top-wrapper {
+  margin: 0px auto 20px auto;
+  padding: 20px 60px;
+  width: 100%;
+}
+
+.body-wrapper {
+  height: 100vh;
+}
+
+.player {
+  padding-top: 20px;
+}
+
+.playlist {
+  background-color: rgba(255,252,232,0.80);
+  height: 500px;
+  padding-top: 20px;
+  padding-left: 20px;
+}
+
+.library {
+  background-color: rgba(255,252,232,0.80);
+  padding-top: 20px;
+  margin-left: 20px;
+  height: 500px;
+}
+
+.library-header, .playlist-header {
+  font-weight: 700;
+  text-transform: uppercase;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid black;
+}
+
+table {
+  width: 100%;
+}
+
+th {
+  border-bottom: 1px solid black;
+}
+
+th:first-child {
+  width: 40%;
+}
+
+th:last-child {
+  width: 60%;
+}
+
+tr {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted rgb(150,150,150);
+}
+
+td {
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-right: 8px;
+}

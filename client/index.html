@@ -1,14 +1,19 @@
 <!DOCTYPE html>
 <html>
-  <body>
+  <head>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="styles/styles.css">
+
     <script src="bower_components/jquery/jquery.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
 
     <script src="data/data.js"></script>
-
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
     <script src="collections/SongQueue.js"></script>
@@ -17,19 +22,58 @@
     <script src="views/PlayerView.js"></script>
     <script src="views/LibraryView.js"></script>
     <script src="views/LibraryEntryView.js"></script>
+    <script src="views/SongQueueView.js"></script>
+    <script src="views/SongQueueEntryView.js"></script>
     <script src="views/AppView.js"></script>
+    <script src="router/AppRouter.js"></script>
 
+  </head>
+  <body>
+    <div class="bg-wrap">
+      <div class="top-wrapper">
+        <div class="centered"><i class="fa fa-headphones fa-5x" style="color:white"></i></div>
+        <div class="centered header">AMPED</div>
+        <div class="centered player">
+        </div>
+      </div>
+      <div class="body-wrapper">
+        <div class="col-md-1">
+        </div>
+        <div class="col-md-5 playlist">
+          <div class="playlist-header centered"><i class="fa fa-gittip"></i> Playlist</div>
+        </div>
+        <div class="col-md-5 library">
+          <div class="library-header centered"><i class="fa fa-list"></i> Library</div>
+        </div>
+        <div class="col-md-1">
+        </div>
+      </div>
+    </div>
     <script>
       $(function(){
         // set up model objects
         var library = new Songs(songData);
         var app = new AppModel({library: library});
+        console.log(library);
 
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
 
         // put the view onto the screen
         $('body').append(appView.render());
+
+        // Initiate the router
+        var app_router = window.router;
+        app_router = new AppRouter;
+        app_router.on('route:song', function(title) {
+          songTitle = title.replace(/-/g, ' ');
+          var thisSong = library.find(function(song){
+            return song.get('title') === songTitle;
+          });
+          thisSong.enqueue();
+        });
+
+        Backbone.history.start();
       });
     </script>
   </body>
